@@ -12,7 +12,8 @@ class UserController extends Controller
 	public function index()
 	{
 		$title = "Usuários";
-		$users = User::where(['id' => 10])->get();
+		$users = User::where('name', 'LIKE', 'a%')->min('id');
+		echo $users; return;
 		return view("admin.users.index", compact("title", "users"));
 	}
 	
