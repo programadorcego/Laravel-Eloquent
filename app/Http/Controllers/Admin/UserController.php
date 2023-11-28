@@ -25,12 +25,19 @@ class UserController extends Controller
 	
 	public function create()
 	{
-		$user = new User();
+		/*$user = new User();
 		$user->name = "Willian Pereira";
 		$user->email = "willian@email.com";
 		$create = $user->save();
 		
 		if($create)
+		{
+			return redirect()->route("user", $user->id);
+		}*/
+
+		$user = User::create(['name' => 'Willian Pereira', 'email' => 'willian@email.com']);
+
+		if($user)
 		{
 			return redirect()->route("user", $user->id);
 		}
