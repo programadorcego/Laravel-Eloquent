@@ -12,34 +12,27 @@ class UserController extends Controller
 	public function index()
 	{
 		$title = "Usuários";
-		$users = User::where('name', 'LIKE', 'a%')->min('id');
-		echo $users; return;
+		$users = User::all();
 		return view("admin.users.index", compact("title", "users"));
 	}
 	
 	public function show(int $id)
 	{
-		/*echo "<h1>Usuário</h1>";
-		
-		echo "<p>{$this->users[$id][0]} | {$this->users[$id][1]}</p>";*/
-		
 		$title = "Usuário";
-		//$user = $this->users[$id];
-		//$user = DB::table("users")->select("id", "name", "email")->where('id', $id)->first();
-		$user = DB::table("users")->find($id);
+		$user = User::find($id);
 		return view('admin.users.show', compact("title", "user"));
 	}
 	
 	public function create()
 	{
-		$create = DB::table("users")->insert([
-			'name' => 'Usuário Teste',
-			'email' => 'teste@meuemail.com.br',
-		]);
+		$user = new User();
+		$user->name = "Willian Pereira";
+		$user->email = "willian@email.com";
+		$create = $user->save();
 		
 		if($create)
 		{
-			return redirect()->route("users");
+			return redirect()->route("user", $user->id);
 		}
 	}
 	
