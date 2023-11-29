@@ -99,11 +99,13 @@ class UserController extends Controller
 	
 	public function update(int $id)
 	{
-		$update = DB::table("users")->where("id", $id)->update(['name' => 'Usuário Teste Update']);
-		
+		$user = User::find($id);
+		$user->name = "João Silva Update";
+		$update = $user->save();
+
 		if($update)
 		{
-			return redirect()->route("users");
+			return redirect()->route("user", $id);
 		}
 	}
 	
