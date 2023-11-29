@@ -105,7 +105,8 @@ class UserController extends Controller
 	
 	public function delete(int $id)
 	{
-		$delete = DB::table("users")->where("id", $id)->delete();
+		$user = User::find($id);
+		$delete = $user->delete();
 		
 		if($delete)
 		{
