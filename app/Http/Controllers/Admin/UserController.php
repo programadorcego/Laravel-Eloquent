@@ -105,7 +105,7 @@ class UserController extends Controller
 	
 	public function delete(int $id)
 	{
-		$user = User::truncate();
+		$user = User::find($id)->delete();
 		return redirect()->route("users");
 	}
 }
