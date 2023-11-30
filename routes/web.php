@@ -19,4 +19,5 @@ Route::prefix("admin")->namespace("Admin\\")->group(function(){
 	Route::get("user/create", "UserController@create")->name("user.create");
 	Route::get("user/{id}/update", "UserController@update")->name("user.update");
 	Route::get("user/{id}/delete", "UserController@delete")->name("user.delete");
+	Route::get("user/{id}/restore", "UserController@restore")->name("user.restore");
 });

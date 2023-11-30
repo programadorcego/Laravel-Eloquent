@@ -105,7 +105,17 @@ class UserController extends Controller
 	
 	public function delete(int $id)
 	{
-		$user = User::find($id)->delete();
+		$user = User::find($id)->forceDelete();
 		return redirect()->route("users");
+	}
+
+	public function restore($id)
+	{
+		$user = User::withTrashed()->where("id", $id)->first();
+		$restore = $user->restore();
+		if($restore)
+		{
+			return redirect()->route("users");
+		}
 	}
 }
