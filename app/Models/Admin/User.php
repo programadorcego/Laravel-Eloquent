@@ -13,4 +13,9 @@ class User extends Model
     protected $table = "usuarios";
     public $timestamps = false;
     protected $fillable = ['name', 'email'];
+
+    public function phone()
+{
+    return $this->hasOne(Phone::class, "usuario_id");
+}
 }
